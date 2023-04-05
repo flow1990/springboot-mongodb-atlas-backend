@@ -26,6 +26,7 @@ pipeline {
             steps{
                 script{
                     sh "nohup mvn spring-boot:run -Dserver.port=8081 &"
+                    sh "curl http://localhost:8081"
                 }
             }
         }
