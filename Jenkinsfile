@@ -1,8 +1,9 @@
-node {
+pipeline {
+  agent any
   tools {
     maven 'MVN_3.8.6'
-    
   }
+  stages {
 
   stage("Clone the project") {
     git branch: 'main', url: 'https://github.com/flow1990/springboot-mongodb-atlas-backend.git'
