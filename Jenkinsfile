@@ -26,7 +26,6 @@ pipeline {
             steps{
                 script{
                     sh "nohup mvn spring-boot:run &"
-                    sh "curl http://localhost:8081"
                 }
             }
         }
