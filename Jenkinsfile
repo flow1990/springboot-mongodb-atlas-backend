@@ -5,29 +5,18 @@ pipeline {
        jdk 'Java17'
     }
     stages {
-
-        stage('Compilation'){
+        stage('Packaging'){
             steps{
                 script{
-                    sh "mvn clean install -DskipTests"
+                    sh "mvn package"
                 }
             }
         }
 
-        stage('Testing'){
-            steps{
-                script{
-                    sh "mvn test"
-                }
-            }
-        }
-        
-        stage('Deployment'){
-            steps{
-                script{
-                    sh "nohup mvn spring-boot:run &"
-                }
-            }
-        }
+    stage('Docker Build') {
+      steps {
+      	sh 'docker build -t flow90/springboot-mongodb-atlas-backend:latest .'
+      }
     }
+  }
 }
