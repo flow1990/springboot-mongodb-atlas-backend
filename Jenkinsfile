@@ -1,4 +1,8 @@
 node {
+  tools {
+    maven 'MVN_3.8.6'
+  }
+  
   stage("Clone the project") {
     git branch: 'main', url: 'https://github.com/flow1990/springboot-mongodb-atlas-backend.git'
   }
