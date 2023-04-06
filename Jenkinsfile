@@ -5,7 +5,7 @@ pipeline {
        jdk 'Java17'
     }
     stages {
-        stage('Packaging'){
+        stage('Package Application'){
             steps{
                 script{
                     sh "mvn clean package"
@@ -13,17 +13,16 @@ pipeline {
             }
         }
 
-    stage('Docker Build') {
+    stage('Build Docker Container') {
       steps {
       	sh 'docker build -t flow90/springboot-mongodb-atlas-backend:latest .'
       }
     }
 
-    stage('Deploy') {
+    stage('Deploy Container') {
       steps {
         sh 'docker ps -f name=springboot-mongodb-atlas-backend -q | xargs --no-run-if-empty docker container stop'
         sh 'docker container ls -a -fname=springboot-mongodb-atlas-backend -q | xargs -r docker container rm'
-        //sh 'docker kill springboot-mongodb-atlas-backend'
       	sh 'docker run --rm -d -p 8090:8080 --name springboot-mongodb-atlas-backend flow90/springboot-mongodb-atlas-backend'
       }
     }
