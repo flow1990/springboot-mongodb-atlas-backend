@@ -15,13 +15,14 @@ pipeline {
 
     stage('Docker Build') {
       steps {
+        sh 'docker kill springboot-mongodb-atlas-backend'
       	sh 'docker build -t flow90/springboot-mongodb-atlas-backend:latest .'
       }
     }
 
     stage('Deploy') {
       steps {
-      	sh 'docker run -d -p 8090:8080 flow90/springboot-mongodb-atlas-backend'
+      	sh 'docker run --rm -d -p 8090:8080 --name springboot-mongodb-atlas-backend flow90/springboot-mongodb-atlas-backend'
       }
     }
   }
