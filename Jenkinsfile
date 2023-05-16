@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    tools {
-       maven 'MVN_3.8.6'
-       jdk 'Java17'
-    }
     stages {
         stage('Package Application'){
             steps{
