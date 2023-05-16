@@ -8,6 +8,7 @@ pipeline {
         stage('Package Application'){
             steps{
                 script{
+                    sh "npm install"
                     sh "mvn clean package"
                 }
             }
