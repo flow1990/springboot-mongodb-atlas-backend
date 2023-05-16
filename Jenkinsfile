@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools { 
-        jdk "JAVA17"
-    }
     stages {
         stage('Package Application'){
             steps{
